@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://www.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>HL7 SOAP Server</name>
+    <description>Receive HL7 Messages :: SOAP Server</description>
+    <parent>
+        <groupId>net.development.hl7soap</groupId>
+        <artifactId>hl7soap-base</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../soap-infrastructure</relativePath>
+    </parent>
+    
+    <artifactId>hl7soapServer</artifactId>
+    <packaging>jar</packaging>
+
+    <dependencies>
+	    <!-- Dependencies inherited from the parent POM -->
+	    <dependency>
+	        <groupId>org.apache.cxf</groupId>
+	        <artifactId>cxf-core</artifactId>
+	    </dependency>
+	    <dependency>
+            <groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlet</artifactId>
+        </dependency>
+	    <dependency>
+	        <groupId>org.slf4j</groupId>
+	        <artifactId>slf4j-api</artifactId>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.slf4j</groupId>
+	        <artifactId>slf4j-simple</artifactId>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.apache.commons</groupId>
+	        <artifactId>commons-text</artifactId>
+	    </dependency>
+	</dependencies>
+    
+    <build>
+    <plugins>
+        <!-- Maven Shade Plugin configuration to package dependencies and specify main class -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                    <configuration>
+                        <transformers>
+                            <!-- Specify main class in JAR's manifest -->
+                            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                <mainClass>net.development.hl7soapServices.HL7SoapServer</mainClass>
+                            </transformer>
+                        </transformers>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+</project>
