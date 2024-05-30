@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 public class HL7SoapServer {
     private static final Logger logger = LoggerFactory.getLogger(HL7SoapServer.class);
     private static final String HL7_SOAP_HOST = System.getenv("MY_POD_IP");
-//    private static final String HL7_SOAP_HOST = "192.168.0.17";
     private static final int HL7_SOAP_PORT = 8080;
     private static final int ENDPOINT_PUBLISHED_PORT = 8090;
 
