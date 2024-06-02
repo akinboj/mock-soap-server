@@ -16,7 +16,7 @@ ENV TZ="Australia/Sydney"
 
 COPY target/hl7soapServer-1.0.0-SNAPSHOT.jar /app/hl7soapServer-1.0.0-SNAPSHOT.jar
 
-# Kube probes
+# Kube probes - TDL TCP probes
 RUN touch /tmp/healthy
 RUN echo "JGroups hl7 application is running" > /tmp/healthy
 
